@@ -1,17 +1,24 @@
-const main = function () {
+import DataSource from '../data/data-source.js';
+
+const main = () => {
     const searchElement = document.querySelector("#searchElement");
     const buttonSearchElement = document.querySelector("#searchButtonElement");
     const clubListElement = document.querySelector("#clubList");
 
-    const onButtonSearchClicked = function () {
-        const dataSource = new DataSource(renderResult, fallbackResult);
-        dataSource.searchClub(searchElement.value);
+    const onButtonSearchClicked = async () => {
+        try{
+            const result = await DataSource.searchClub(searchElement.value);
+            renderResult(result)
+        }catch(pesan){
+            fallbackResult(pesan);
+        }
+
         // console.log(searchElement.value);
     };
 
-    const renderResult = function (results) {
+    const renderResult = results => {
         clubListElement.innerHTML = "";
-        results.forEach(function (club) {
+        results.forEach( club => {
 
             const {name, fanArt, description} = club;
 
@@ -29,10 +36,10 @@ const main = function () {
         const [irfan] = results;
 
         const {name: nama_klub} = irfan;
-        console.log(nama_klub);
+        console.log(results);
     };
 
-    const fallbackResult = function (message) {
+    const fallbackResult = message => {
         clubListElement.innerHTML = "";
         clubListElement.innerHTML += `<h2 class="placeholder"> ${message} </h2>`
                 console.log(message);
@@ -41,3 +48,5 @@ const main = function () {
 
     buttonSearchElement.addEventListener("click", onButtonSearchClicked);
 };
+
+export default main;

@@ -1,4 +1,4 @@
-const clubs = [
+const namaclubs = [
     {
         name: "Arsenal",
         stadium: "Emirates Stadium",
@@ -43,3 +43,5 @@ const clubs = [
 
     }
 ];
+
+export default namaclubs;
