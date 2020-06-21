@@ -21,22 +21,22 @@ const main = () => {
         clubListElement.innerHTML = "";
         results.forEach( club => {
 
-            const {name, fanArt, description} = club;
+            const {strTeam, strTeamBadge, strDescriptionEN} = club;
 
             const clubElement = document.createElement("div");
             clubElement.setAttribute("class", "club");
 
-            clubElement.innerHTML = `<img class="fan-art-club" src=" ${fanArt} " alt="Fan Art">
+            clubElement.innerHTML = `<img class="fan-art-club" src=" ${strTeamBadge} " alt="Fan Art">
                 <div class="club-info">
-                <h2> ${name} </h2>
-                <p> ${description} </p>
+                <h2> ${strTeam} </h2>
+                <p> ${strDescriptionEN} </p>
                  </div>`;
             clubListElement.appendChild(clubElement);
         })
 
         const [irfan] = results;
 
-        const {name: nama_klub} = irfan;
+        const {strTeam: nama_klub} = irfan;
         console.log(results);
     };
 
